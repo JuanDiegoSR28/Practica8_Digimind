@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "172604863241",
+    "project_id": "mydigimind-bc894",
+    "storage_bucket": "mydigimind-bc894.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172604863241:android:a06ef565d256da208e99d8",
+        "android_client_info": {
+          "package_name": "sanchez.juan.mydigimind"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQelYGM0Wg_mN5AZW-GcZtxwTdpSNmByg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

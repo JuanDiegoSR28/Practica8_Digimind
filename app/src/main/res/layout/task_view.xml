@@ -14,7 +14,7 @@
 
 
         <TextView
-            android:id="@+id/tv_title"
+            android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -24,7 +24,7 @@
 
 
         <TextView
-            android:id="@+id/tv_days"
+            android:id="@+id/tvDays"
             android:layout_width="match_parent"
             android:layout_height="17dp"
             android:textColor="@color/black"
@@ -35,7 +35,7 @@
             />
         
         <TextView
-            android:id="@+id/tv_time"
+            android:id="@+id/tvTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

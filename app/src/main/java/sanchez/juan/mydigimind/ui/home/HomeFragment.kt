@@ -12,23 +12,18 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import sanchez.juan.mydigimind.R
 import sanchez.juan.mydigimind.databinding.FragmentHomeBinding
-import sanchez.juan.mydigimind.ui.Task
+import sanchez.juan.mydigimind.ui.notifications.Task
 
 class HomeFragment : Fragment() {
 
-
-
     private var adaptador: AdaptadorTareas? = null
-
     private var _binding: FragmentHomeBinding? = null
 
-    companion object{
+    companion object {
         var task = ArrayList<Task>()
         var first = true
     }
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -36,48 +31,36 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+        val homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-
-        if(first){
+        if (first) {
             fillTasks()
             first = false
         }
 
-
-
-
-        adaptador = AdaptadorTareas(root.context, task )
+        adaptador = AdaptadorTareas(requireContext(), task)
         val gridView: GridView = root.findViewById(R.id.gridview)
-
         gridView.adapter = adaptador
 
         return root
     }
 
-    fun fillTasks(){
-        task.add(Task("Practice 01", arrayListOf("Monday","Sunday"), "17:30"))
-        task.add(Task("Practice 02", arrayListOf("Monday","Sunday"),"17:40"))
-        task.add(Task("Practice 03", arrayListOf("Wednesday"),"14:00"))
-        task.add(Task("Practice 04", arrayListOf("Saturday"),"11:00"))
-        task.add(Task("Practice 05", arrayListOf("Friday"),"13:00"))
-        task.add(Task("Practice 06", arrayListOf("Thursday"),"10:40"))
-        task.add(Task("Practice 07", arrayListOf("Monday"),"12:00"))
+    private fun fillTasks() {
+        task.add(Task("Practice 01", arrayListOf("Monday", "Sunday"), "17:30"))
+        task.add(Task("Practice 02", arrayListOf("Monday", "Sunday"), "17:40"))
+        task.add(Task("Practice 03", arrayListOf("Wednesday"), "14:00"))
+        task.add(Task("Practice 04", arrayListOf("Saturday"), "11:00"))
+        task.add(Task("Practice 05", arrayListOf("Friday"), "13:00"))
+        task.add(Task("Practice 06", arrayListOf("Thursday"), "10:40"))
+        task.add(Task("Practice 07", arrayListOf("Monday"), "12:00"))
     }
 
-    private class AdaptadorTareas : BaseAdapter{
+    private class AdaptadorTareas(context: Context, private val tasks: ArrayList<Task>) : BaseAdapter() {
 
-        var tasks = ArrayList<Task>()
-        var contexto: Context? = null
-
-        constructor(contexto: Context, tasks: ArrayList<Task>){
-            this.contexto = contexto
-            this.tasks = tasks
-        }
+        private val inflador: LayoutInflater = LayoutInflater.from(context)
 
         override fun getCount(): Int {
             return tasks.size
@@ -92,17 +75,16 @@ class HomeFragment : Fragment() {
         }
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-            var task = tasks[position]
-            var inflador = LayoutInflater.from(contexto)
-            var vista = inflador.inflate(R.layout.task_view, null)
+            val vista = convertView ?: inflador.inflate(R.layout.task_view, parent, false)
 
-            var tv_title: TextView = vista.findViewById(R.id.tv_title)
-            var tv_time: TextView = vista.findViewById(R.id.tv_time)
-            var tv_days: TextView = vista.findViewById(R.id.tv_days)
+            val tvtitle: TextView = vista.findViewById(R.id.tvTitle)
+            val tvtime: TextView = vista.findViewById(R.id.tvTime)
+            val tvdays: TextView = vista.findViewById(R.id.tvDays)
 
-            tv_title.setText(task.title)
-            tv_time.setText(task.time)
-            tv_days.setText(task.days.toString())
+            val task = tasks[position]
+            tvtitle.text = task.title
+            tvtime.text = task.time
+            tvdays.text = task.days.joinToString(", ")
 
             return vista
         }

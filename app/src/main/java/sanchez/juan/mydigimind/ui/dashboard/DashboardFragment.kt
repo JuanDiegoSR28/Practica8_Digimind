@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -17,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import sanchez.juan.mydigimind.R
 import sanchez.juan.mydigimind.databinding.FragmentDashboardBinding
-import sanchez.juan.mydigimind.ui.Task
+import sanchez.juan.mydigimind.ui.notifications.Task
 import sanchez.juan.mydigimind.ui.home.HomeFragment
 import java.text.SimpleDateFormat
 
